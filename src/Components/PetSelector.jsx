@@ -1,16 +1,15 @@
 
 
-export function PetSelector({petsNames, setPet}){
+export function PetSelector({handleSubmit, petsNames}){
     
     return(
         <>
         <form>
-        <select>
+        <select  onChange={e => handleSubmit(e)}>
             <> 
             {
-                petsNames.map((name) => <option value={name} key={name} onChange={e => setPet(e.target.value)} >{name}</option>)
-            }
-            
+                petsNames.map((name) => <option value={name} key={name} >{name}</option>)
+            }           
             </>
         </select>
     </form>

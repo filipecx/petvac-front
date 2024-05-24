@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 import './App.css'
 import { PetSelector } from './Components/PetSelector'
+import { AddPet } from './Components/AddPet';
+import { AddVac } from './Components/AddVac';
 
 function App() {
   const [petsNames, setPetsNames] = useState(['Maya', 'Atena', 'Graviola']);
@@ -19,8 +21,13 @@ function App() {
     e.preventDefault();
     let results = new FormData(addPetForm);
     setPetsNames(petsNames => [...petsNames, results.get("name")]);
-    console.log(petsNames);
-    
+  }
+
+  const addVac = (e) => {
+    e.preventDefault();
+    let vacData = new FormData(addVacForm);
+    vacData.append("petName", pet)
+    console.log(vacData);
   }
  
   return (
@@ -28,21 +35,11 @@ function App() {
       <h1>Carteirinha de vacinaCão</h1>
       
       <img src={picture} alt="" />
+      <AddPet addPet={addPet} />
       <PetSelector handleSubmit={handleSubmit} petsNames={petsNames}/>
-      <form action="" method="post" onSubmit={addPet} id='addPetForm'>
-        <label htmlFor="name">Name: </label>
-        <input type="text" name="name" id="name" />
-
-        <label htmlFor="picture">Picture: </label>
-        <input type="text" name="picture" id="picture" />
-
-        <label htmlFor="race">Race: </label>
-        <input type="text" name="race" id="race" />
-
-        <button type="submit">Adicionar</button>
-      </form>
       <h2>Vacinas</h2>
       <p>{pet}</p>
+      <AddVac addVac={addVac} />
     </>
   )
 }

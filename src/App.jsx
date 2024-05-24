@@ -16,7 +16,7 @@ function App() {
  
   return (
     <>
-      <h1>Pet</h1>
+      <h1>Carteirinha de vacinaCão</h1>
       
       <img src={picture} alt="" />
       <PetSelector handleSubmit={handleSubmit} petsNames={petsNames}/>

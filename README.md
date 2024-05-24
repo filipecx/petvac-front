@@ -1,5 +1,7 @@
 # React + Vite
 
+Esse é o front da pequena aplicação para administrar as vacinas de seus pets. 
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

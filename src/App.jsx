@@ -15,7 +15,7 @@ function App() {
   const [addPetOpen, setAddPetOpen] = useState(false);
   const [addVacOpen, setAddVacOpen] = useState(false);
 
-  const [vacName, setVacName] = useState('carav');
+  const [vacName, setVacName] = useState('Antirrabica');
   const [date, setDate] = useState('12/12/12');
   const [reDate, setReDate] = useState('13/13/13');
   const [vetName, setVetName] = useState('Araujo');
@@ -49,7 +49,6 @@ function App() {
       </section>
       {addPetOpen ? <AddPet addPet={addPet} />: null}
       <h2>Vacinas</h2>
-      <p>{petName}</p>
       <button onClick={() => setAddVacOpen(!addVacOpen)}>+</button>
       {addVacOpen ? <AddVac addVac={addVac} />: null}
       <VacCard vacName={vacName} date={date} reDate={reDate} vetName={vetName} />

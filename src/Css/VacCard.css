@@ -1,3 +1,13 @@
 .vac-card {
-    background-color: red;
+    background-color: #e2a45c;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 7%;
+}
+
+.vac-card p {
+    margin: 0;
 }

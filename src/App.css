@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color:  rgba(255, 214, 125, 0.959);
+  border-radius: 8px;
 }
 
 .logo {
@@ -46,6 +48,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  background-color: #e2a45c;
+  border-radius: 6px;
 }
 
 

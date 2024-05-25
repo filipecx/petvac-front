@@ -1,14 +1,6 @@
-.petSelector {
-    position: relative;
-    font-family: Arial;
-  }
+input, textarea {
 
-
-.select-items {
-    position: absolute;
-    background-color: DodgerBlue;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 99;
-  }
+  
+  min-width: 50px;
+  max-width: 350px;
+}

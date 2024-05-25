@@ -5,6 +5,7 @@ import { PetSelector } from './Components/PetSelector'
 import { AddPet } from './Components/AddPet';
 import { AddVac } from './Components/AddVac';
 import { CardProfile } from './Components/CardProfile';
+import { VacCard } from './Components/VacCard';
 
 function App() {
   const [petsNames, setPetsNames] = useState(['Maya', 'Atena', 'Graviola']);
@@ -13,6 +14,11 @@ function App() {
   const [petRace, setPetRace]  = useState('Shih-tzu');
   const [addPetOpen, setAddPetOpen] = useState(false);
   const [addVacOpen, setAddVacOpen] = useState(false);
+
+  const [vacName, setVacName] = useState('carav');
+  const [date, setDate] = useState('12/12/12');
+  const [reDate, setReDate] = useState('13/13/13');
+  const [vetName, setVetName] = useState('Araujo');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,6 +52,8 @@ function App() {
       <p>{petName}</p>
       <button onClick={() => setAddVacOpen(!addVacOpen)}>+</button>
       {addVacOpen ? <AddVac addVac={addVac} />: null}
+      <VacCard vacName={vacName} date={date} reDate={reDate} vetName={vetName} />
+      
       
     </>
   )

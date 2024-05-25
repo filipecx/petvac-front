@@ -1,0 +1,16 @@
+.profile {
+    
+    display: flex;
+    flex-direction: row;
+}
+
+.profile img {
+    border-radius: 100%;
+    max-width: 40%;
+    height: auto;
+    margin-right: 3%;
+}
+
+.profile h3 {
+    font-size: 30px;
+}

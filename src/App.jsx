@@ -24,17 +24,6 @@ function App() {
 
   const baseUrl = 'http://localhost:8080/petvac'
 
-  const handleSubmit = async () => {
-    //e.preventDefault();
-    //setPetName(e.target.value);
-    
-
-    const response = await axios.get(baseUrl + `/${petName}`)
-    setVacList(response.data.slice())
-    
-    
-  }
-
   const addPet = async (e) => {
     e.preventDefault();
     let results = new FormData(addPetForm);
@@ -55,21 +44,24 @@ function App() {
 
   const getPetsNames = async () => {
     const response = await axios.get(baseUrl);
-    fillPetsNames(response.data);
+    const data = response.data;
+    const names = [];
+    data.map((item) =>  names.push(item.name))
+    
+    fillPetsNames(names);
+
   }
 
   const fillPetsNames = (listOfNames) => {
       setPetsNames(listOfNames);
-      petName ? console.log(petName): setPetName(listOfNames[0]);
-      //setPetName(listOfNames[0]);
-      //getVacFromPet(listOfNames[0]);
+      petName ? null: setPetName(listOfNames[0]);
+      petRace ? null : setPetRace(li)
   }
 
   const getVacFromPet = async (petName) => {
-    console.log(petName)
     try{
       if(petName){
-        const response = await axios.get(baseUrl + `/${petName}`);
+        const response = await axios.get(baseUrl + `/vaccines/${petName}`);
         setVacList(response.data);
     }
     }catch(e){
@@ -77,19 +69,21 @@ function App() {
     }
     
   }
-/*
-  useEffect(() => {
-    console.log('oi')
-    
-    console.log(petName + 'petname')
-    
-  }, [])
-*/
+  const getPetInfo = async (petName) => {
+    try{
+      if(petName){
+        const response = await axios.get(baseUrl + `/${petName}`)
+        console.log(response.data);
+      }
+    }catch(e){
+      console.log(e)
+    }
+  }
   useEffect(() => {
     
     getPetsNames();
     getVacFromPet(petName);
-    console.log('mudou nome' + petName);
+    getPetInfo(petName)
   }, [petName])
 
 
@@ -107,12 +101,10 @@ function App() {
       {addVacOpen ? <AddVac addVac={addVac} />: null}
       {vacList.map((vac) => {
         return(
-        <VacCard vacName={vac.name} date={vac.appDate} reDate={vac.reAppDate} vetName={vac.vetName} />
+        <VacCard vacName={vac.name} date={vac.appDate} reDate={vac.reAppDate} vetName={vac.vetName} key={vac.name}/>
       )
       })
       }
-      {<button onClick={getPetsNames}>CHAAAAMA</button>}
-      
     </>
   )
 }

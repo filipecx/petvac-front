@@ -43,8 +43,8 @@ function App() {
     vacData.append("petName", petName);
     console.log(vacData);
     setVacList(vacList => [...vacList, vacData]);
-
-    axios.post(baseUrl + "/vaccines", 
+    try{
+      axios.post(baseUrl + "/vaccines", 
     {
       name: vacData.get("name"), 
       appDate: vacData.get("date"), 
@@ -52,7 +52,11 @@ function App() {
       vetName: vacData.get("vetName"),
       petName: petName
     })
-    console.log(vacData.get("date"));
+    setAddVacOpen(false);
+    }catch(e){
+      console.log(e)
+    }
+    
   }
 
   const getPetsNames = async () => {

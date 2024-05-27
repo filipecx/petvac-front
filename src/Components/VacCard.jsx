@@ -6,8 +6,8 @@ export function VacCard({ vacName, date, reDate, vetName, deleteVac, id }) {
         <section className="vac-card">
             <h3>{vacName}</h3>
             <section className='dates'>
-                <p>First shot date: {date}</p>
-                <p>Second shot date: {reDate}</p>
+                <p>Primeira dose: {date}</p>
+                <p>Redose: {reDate}</p>
             </section>
             <p>Vet: {vetName}</p>
             <button onClick={() => deleteVac(id)} >x</button>

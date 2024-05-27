@@ -10,6 +10,9 @@ export function AddVac({addVac}){
             <label htmlFor="ReapplicationDate">Reapplication Date: </label><br />
             <input type="text" name="ReapplicationDate" id="ReapplicationDate" /><br />
 
+            <label htmlFor="vetName">Vet name: </label><br />
+            <input type="text" name="vetName" id="vetName" /><br />
+
             <button type="submit">Adicionar</button>
         </form>
     )

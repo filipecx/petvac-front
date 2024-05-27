@@ -40,8 +40,19 @@ function App() {
   const addVac = (e) => {
     e.preventDefault();
     let vacData = new FormData(addVacForm);
-    vacData.append("petName", pet)
+    vacData.append("petName", petName);
     console.log(vacData);
+    setVacList(vacList => [...vacList, vacData]);
+
+    axios.post(baseUrl + "/vaccines", 
+    {
+      name: vacData.get("name"), 
+      appDate: vacData.get("date"), 
+      reAppDate: vacData.get("ReapplicationDate"), 
+      vetName: vacData.get("vetName"),
+      petName: petName
+    })
+    console.log(vacData.get("date"));
   }
 
   const getPetsNames = async () => {
@@ -70,13 +81,25 @@ function App() {
     }
     
   }
+  const deleteVac = async (id) => {
+    try{
+      const response = await axios.delete(baseUrl + `/vaccines/${id}`)
+      if (response.status == 204){
+        const newList = vacList.filter((value) => {return value != id})
+        console.log(newList)
+        console.log('deletado')
+      }
+      console.log('ish');
+    }catch(e){
+      console.log(e);
+    }
+  }
   const getPetInfo = async (petName) => {
     try{
       if(petName){
         const response = await axios.get(baseUrl + `/${petName}`)
         setPetRace(response.data.race);
         setPicture(response.data.picture);
-        console.log(response.data.race);
       }
     }catch(e){
       console.log(e)
@@ -87,7 +110,7 @@ function App() {
     getPetsNames();
     getVacFromPet(petName);
     getPetInfo(petName)
-  }, [petName])
+  }, [petName, vacList])
 
 
   return (
@@ -104,7 +127,7 @@ function App() {
       {addVacOpen ? <AddVac addVac={addVac} />: null}
       {vacList.map((vac) => {
         return(
-        <VacCard vacName={vac.name} date={vac.appDate} reDate={vac.reAppDate} vetName={vac.vetName} key={vac.name}/>
+        <VacCard vacName={vac.name} date={vac.appDate} reDate={vac.reAppDate} vetName={vac.vetName} deleteVac={deleteVac} key={vac.id} id={vac.id}/>
       )
       })
       }

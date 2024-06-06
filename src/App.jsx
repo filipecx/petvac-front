@@ -25,8 +25,7 @@ function App() {
     let results = new FormData(addPetForm);
     setPetsNames(petsNames => [...petsNames, results.get("name")]);
     try{
-      const response = await axios.post(baseUrl + '/pets', {picture: results.get("picture"), name: results.get("name"), race: results.get("race")})
-      alert("Sucess!");
+      const response = await axios.post(baseUrl + '/pets', {picture: results.get("picture"), name: results.get("name"), race: results.get("race")});
       setAddPetOpen(false);
     }catch(e){
       console.log(e)
@@ -133,7 +132,7 @@ function App() {
       {addVacOpen ? <AddVac addVac={addVac} />: null}
       {vacList.map((vac) => {
         return(
-        <VacCard vacName={vac.name} date={vac.appDate} reDate={vac.reAppDate} vetName={vac.vetName} deleteVac={deleteVac} key={vac._id} id={vac._id}/>
+        <VacCard vacName={vac.name} date={vac.firstShot} reDate={vac.secondShot} vetName={vac.vetName} deleteVac={deleteVac} key={vac._id} id={vac._id}/>
       )
       })
       }

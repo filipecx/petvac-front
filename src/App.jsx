@@ -86,14 +86,14 @@ function App() {
     
   }
   
-  const deleteVac = async (vaccine) => {
-  setVacList(vacList.filter((vac) => {return vac._id != vaccine}));
+  const deleteVac = async (vaccineId) => {
+  
  
     try{
-      const response = await axios.delete(baseUrl + `/vaccines/${id}`)
+      const response = await axios.delete(baseUrl + `/vaccines/${vaccineId}`)
       if (response.status == 204){
+        setVacList(vacList.filter((vac) => {return vac._id != vaccineId}));
         
-        //setVacList(newList);
       }
     }catch(e){
       console.log(e);

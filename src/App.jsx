@@ -13,6 +13,7 @@ function App() {
   const [picture, setPicture] = useState();
   const [petName, setPetName] = useState();
   const [petRace, setPetRace]  = useState();
+  const [petId, setPetId] = useState();
 
   
   const [addPetOpen, setAddPetOpen] = useState(false);
@@ -39,12 +40,20 @@ function App() {
     e.preventDefault(e);
     let results = new FormData(editPetForm);
     try{
-      const response = await axios.put(baseUrl + `/pets/${petName}`, {name: results.get("name"), picture: results.get("picture"), race: results.get("race")});
+      const response = await axios.put(baseUrl + `/pets/${petName}`, {name: petName, picture: results.get("picture"), race: petRace});
       response ? setEditPetOpen(false): null;
     }catch(e){
       console.error(e);
     }
-   
+  }
+
+  const removePet = async () => {
+    console.log(petId);
+    try{
+      axios.delete(baseUrl + `/pets/${petId}`);
+    }catch(e){
+      console.error(e);
+    }
   }
 
   const addVac = async (e) => {
@@ -121,6 +130,7 @@ function App() {
         console.log(response.data)
         setPetRace(response.data[0].race);
         setPicture(response.data[0].picture);
+        setPetId(response.data[0]._id);
       }
     }catch(e){
       console.log(e)
@@ -141,7 +151,8 @@ function App() {
         <CardProfile picture={picture} petName={petName} petRace={petRace} updatePet={updatePet} />
         <button onClick={() => setEditPetOpen(!editPetOpen)}>Edit</button>        
         <PetSelector setPetName={setPetName} petsNames={petsNames}/>
-        <button onClick={() => setAddPetOpen(!addPetOpen)}>+</button>      
+        <button onClick={() => setAddPetOpen(!addPetOpen)}>+</button>
+        <button onClick={removePet}>-</button>      
       </section>
       {editPetOpen ? <UpdatePet updatePet={updatePet} petName={petName} picture={picture} petRace={petRace} setEditPetOpen={setEditPetOpen}/>: null}
       

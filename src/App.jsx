@@ -17,6 +17,7 @@ function App() {
   
   const [addPetOpen, setAddPetOpen] = useState(false);
   const [addVacOpen, setAddVacOpen] = useState(false);
+  const [editPetOpen, setEditPetOpen] = useState(false);
 
   const [vacList, setVacList] = useState([]);
 
@@ -39,7 +40,7 @@ function App() {
     let results = new FormData(editPetForm);
     try{
       const response = await axios.put(baseUrl + `/pets/${petName}`, {name: results.get("name"), picture: results.get("picture"), race: results.get("race")});
-      
+      response ? setEditPetOpen(false): null;
     }catch(e){
       console.error(e);
     }
@@ -138,10 +139,12 @@ function App() {
       <h1>Carteirinha de vacinaCão</h1>
       <section className='petSection'>
         <CardProfile picture={picture} petName={petName} petRace={petRace} updatePet={updatePet} />
+        <button onClick={() => setEditPetOpen(!editPetOpen)}>Edit</button>        
         <PetSelector setPetName={setPetName} petsNames={petsNames}/>
         <button onClick={() => setAddPetOpen(!addPetOpen)}>+</button>      
       </section>
-      <UpdatePet updatePet={updatePet} petName={petName} picture={picture} petRace={petRace} />
+      {editPetOpen ? <UpdatePet updatePet={updatePet} petName={petName} picture={picture} petRace={petRace} setEditPetOpen={setEditPetOpen}/>: null}
+      
       {addPetOpen ? <AddPet addPet={addPet} />: null}
       <h2>Vacinas</h2>
       <button onClick={() => setAddVacOpen(!addVacOpen)}>+</button>

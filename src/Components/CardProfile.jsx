@@ -1,5 +1,5 @@
 import '../Css/Profile.css';
-export function CardProfile({picture, petName, petRace, updatePet}){
+export function CardProfile({picture, petName, petRace, updatePet, setEditPetOpen}){
     return(
         <section className='profile'>
             <img src={picture} alt="" />
@@ -7,7 +7,7 @@ export function CardProfile({picture, petName, petRace, updatePet}){
                 <h3>{petName}</h3>
                 <p>{petRace}</p>
             </section>
-            <button onClick={updatePet}>Edit</button>         
+             
         </section>
     )
 }

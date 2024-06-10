@@ -32,7 +32,7 @@ function App() {
       const response = await axios.post(baseUrl + '/pets', {picture: results.get("picture"), name: results.get("name"), race: results.get("race")});
       setAddPetOpen(false);
     }catch(e){
-      console.log(e)
+      console.error(e)
     }
   }
 
@@ -48,7 +48,8 @@ function App() {
   }
 
   const removePet = async () => {
-    console.log(petId);
+    setPetsNames(petsNames.filter((pet) => {return pet != petName}));
+    setPetName(petsNames[0]);
     try{
       axios.delete(baseUrl + `/pets/${petId}`);
     }catch(e){

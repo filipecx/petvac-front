@@ -149,17 +149,17 @@ function App() {
     <>
       <h1>Carteirinha de vacinaCão</h1>
       <section className='petSection'>
-        <CardProfile picture={picture} petName={petName} petRace={petRace} updatePet={updatePet} />
-        <button onClick={() => setEditPetOpen(!editPetOpen)}>Edit</button>        
+        <button onClick={() => setEditPetOpen(!editPetOpen)}>Edit</button>      
+        <CardProfile picture={picture} petName={petName} petRace={petRace} updatePet={updatePet} />         
         <PetSelector setPetName={setPetName} petsNames={petsNames}/>
-        <button onClick={() => setAddPetOpen(!addPetOpen)}>+</button>
+        <button onClick={() => setAddPetOpen(!addPetOpen)}>{addPetOpen ? '-': '+'}</button>
         <button onClick={removePet}>-</button>      
       </section>
       {editPetOpen ? <UpdatePet updatePet={updatePet} petName={petName} picture={picture} petRace={petRace} setEditPetOpen={setEditPetOpen}/>: null}
       
       {addPetOpen ? <AddPet addPet={addPet} />: null}
       <h2>Vacinas</h2>
-      <button onClick={() => setAddVacOpen(!addVacOpen)}>+</button>
+      <button onClick={() => setAddVacOpen(!addVacOpen)}>{addVacOpen ? '-': '+'}</button>
       {addVacOpen ? <AddVac addVac={addVac} />: null}
       {vacList.map((vac) => {
         return(

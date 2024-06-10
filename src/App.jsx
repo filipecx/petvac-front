@@ -87,10 +87,8 @@ function App() {
     const response = await axios.get(baseUrl + '/pets');
     const data = response.data;
     const names = [];
-    data.map((item) =>  names.push(item.name))
-    
+    data.map((item) =>  names.push(item.name))  
     fillPetsNames(names);
-
   }
 
   const fillPetsNames = (listOfNames) => {
@@ -128,7 +126,6 @@ function App() {
     try{
       if(petName){
         const response = await axios.get(baseUrl + `/pets/${petName}`);
-        console.log(response.data)
         setPetRace(response.data[0].race);
         setPicture(response.data[0].picture);
         setPetId(response.data[0]._id);
@@ -150,7 +147,7 @@ function App() {
       <h1>Carteirinha de vacinaCão</h1>
       <section className='petSection'>
         <button onClick={() => setEditPetOpen(!editPetOpen)}>Edit</button>      
-        <CardProfile picture={picture} petName={petName} petRace={petRace} updatePet={updatePet} />         
+        <CardProfile picture={picture} petName={petName} petRace={petRace}/>         
         <PetSelector setPetName={setPetName} petsNames={petsNames}/>
         <button onClick={() => setAddPetOpen(!addPetOpen)}>{addPetOpen ? '-': '+'}</button>
         <button onClick={removePet}>-</button>      
